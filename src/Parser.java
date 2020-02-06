@@ -48,7 +48,7 @@ public class Parser
 	                    }
 					case PTBlock.ActionType.Shift:
 						{
-							cg.Generate(ptb.getSem());
+							cg.generate(ptb.getSem());
 							tokenId = nextTokenID();
 							curNode = ptb.getIndex();
 						}
@@ -70,7 +70,7 @@ public class Parser
 	
 							curNode = parseStack.pop();
 							ptb = parseTable[curNode][ptb.getIndex()];
-							cg.Generate(ptb.getSem());
+							cg.generate(ptb.getSem());
 							curNode = ptb.getIndex();
 						}
 						break;
@@ -83,7 +83,7 @@ public class Parser
 						
 				}
 	        }
-	        cg.FinishCode();
+	        cg.finishCode();
 		}
 		catch (Exception e)
 		{
@@ -96,7 +96,7 @@ public class Parser
 		String t = "";
 		try
 		{
-			t = scanner.NextToken();
+			t = scanner.nextToken();
 		}
 		catch (Exception e)
 		{
@@ -114,7 +114,7 @@ public class Parser
 	
 	public void WriteOutput(String outputFile) // You can change this function, if you think it is not comfortable
 	{
-        	cg.WriteOutput(outputFile);
+        	cg.writeOutput(outputFile);
 	}
 }
 

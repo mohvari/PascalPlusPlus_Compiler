@@ -24,7 +24,7 @@ public class Scanner
 		// ...
 	}
 
-	public String NextToken() throws Exception
+	public String nextToken() throws Exception
 	{
 		if (x == 0){
 			x++;

@@ -10,13 +10,13 @@ public class CodeGenerator
         this.scanner = scanner;
     }
 
-    public void Generate(String sem)
+    public void generate(String semantic)
     {
-    	System.out.println(sem); // Just for debug
+    	System.out.println(semantic); // Just for debug
     	
-            if (sem.equals("NoSem"))
+            if (semantic.equals("NoSem"))
             	return;
-            else if(sem.equals("@push")){
+            else if(semantic.equals("@push")){
                 System.out.println("Hello compiler");
             }
             /*
@@ -31,12 +31,12 @@ public class CodeGenerator
              */
     }
     
-    public void FinishCode() // You may need this
+    public void finishCode() // You may need this
     {
 
     }
 
-    public void WriteOutput(String outputName)
+    public void writeOutput(String outputName)
     {
     	// Can be used to print the generated code to output
     	// I used this because in the process of compiling, I stored the generated code in a structure
