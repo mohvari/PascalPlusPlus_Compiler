@@ -26,7 +26,7 @@
         "token": "VAR_DCL",
         "func": "",
         "anchorX": 748.8000000000002,
-        "anchorY": 361.59999999999997,
+        "anchorY": 361.6,
         "isGraph": true,
         "isGlobal": false
       },
@@ -335,11 +335,11 @@
       {
         "start": 17,
         "end": 18,
-        "token": "type",
+        "token": "ARRAY_DIMENSION",
         "func": "",
-        "anchorX": 805.9999999999936,
+        "anchorX": 805.9999999999937,
         "anchorY": 192.40000000000026,
-        "isGraph": false,
+        "isGraph": true,
         "isGlobal": false
       },
       {
@@ -355,11 +355,11 @@
       {
         "start": 19,
         "end": 20,
-        "token": "ARRAY_DIMENSION",
+        "token": "type",
         "func": "",
         "anchorX": 1163.1999999999941,
         "anchorY": 197.20000000000044,
-        "isGraph": true,
+        "isGraph": false,
         "isGlobal": false
       },
       {
@@ -415,7 +415,7 @@
         "end": 23,
         "token": "[",
         "func": "",
-        "anchorX": 388.8,
+        "anchorX": 388.79999999999995,
         "anchorY": 85.59999999999998,
         "isGraph": false,
         "isGlobal": false
@@ -456,7 +456,7 @@
         "token": "number",
         "func": "",
         "anchorX": 596.8,
-        "anchorY": 173.60000000000002,
+        "anchorY": 173.6,
         "isGraph": false,
         "isGlobal": false
       }
@@ -560,7 +560,7 @@
         "token": "EXPR",
         "func": "",
         "anchorX": 598.3999999999996,
-        "anchorY": 190.39999999999998,
+        "anchorY": 190.39999999999995,
         "isGraph": true,
         "isGlobal": false
       },
@@ -790,7 +790,7 @@
         "token": "id",
         "func": "",
         "anchorX": 420.0,
-        "anchorY": 211.99999999999994,
+        "anchorY": 211.99999999999997,
         "isGraph": false,
         "isGlobal": false
       },
@@ -799,7 +799,7 @@
         "end": 44,
         "token": "(",
         "func": "",
-        "anchorX": 551.5999999999998,
+        "anchorX": 551.5999999999997,
         "anchorY": 222.00000000000028,
         "isGraph": false,
         "isGlobal": false
@@ -809,7 +809,7 @@
         "end": 45,
         "token": ")",
         "func": "",
-        "anchorX": 715.9999999999997,
+        "anchorX": 715.9999999999998,
         "anchorY": 183.59999999999945,
         "isGraph": false,
         "isGlobal": false
@@ -839,7 +839,7 @@
         "end": 48,
         "token": ")",
         "func": "",
-        "anchorX": 857.6,
+        "anchorX": 857.5999999999999,
         "anchorY": 288.79999999999995,
         "isGraph": false,
         "isGlobal": false
@@ -849,7 +849,7 @@
         "end": 49,
         "token": "BLOCK",
         "func": "",
-        "anchorX": 1012.4,
+        "anchorX": 1012.4000000000001,
         "anchorY": 287.6,
         "isGraph": true,
         "isGlobal": false
