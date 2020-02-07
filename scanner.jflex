@@ -17,6 +17,7 @@ id = [a-zA-Z][a-zA-Z|_|0-9]*
 keywords = array|boolean|begin|char|do|else|end|false|function|procedure|if|integer|of|real|return|string|true|while
 unary_op = ~
 binary_op = \+|\*|\/|&|\^|\||and|or|%
+minus_op = -
 
 %%
 
@@ -28,6 +29,12 @@ binary_op = \+|\*|\/|&|\^|\||and|or|%
 {keywords} {System.out.println("keyword!");}
 
 {id} {System.out.println(yytext());}
+
+{unary_op} {}
+
+{binary_op} {}
+
+{minus_op} {}
 
 {whiteSpace} {}
 
