@@ -17,8 +17,9 @@ real = [0-9]+\.[0-9]*
 number = [0-9]+
 string = \"[a-zA-Z]*\"
 character = \'[a-zA-z]\'
+bool = true|false
 id = [a-zA-Z][a-zA-Z|_|0-9]*
-keyword = array|begin|do|else|end|false|function|procedure|if|of|return|true|while
+keyword = array|begin|do|else|end|function|procedure|if|of|return|while
 type = integer|real|string|char|boolean
 unary_op = \~
 binary_op = \+|\*|\/|&|\^|\||and|or|%|=|>=|>|<=|<|<>
@@ -65,6 +66,10 @@ comment = [\-\-|//][^\n]*
 
 {keyword} {
     System.out.printf("keyword, %s\n", yytext());
+}
+
+{bool} {
+    System.out.printf("bool, %s\n", yytext());
 }
 
 {type} {
