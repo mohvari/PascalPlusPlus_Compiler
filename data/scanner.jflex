@@ -11,6 +11,7 @@ import java.io.FileWriter;
 %char
 %column
 
+comment_multi_line = [<\-\-][\S\s]*[\-\->]
 white_space = [ |\t|\n]+
 real = [0-9]+\.[0-9]*
 number = [0-9]+
@@ -25,7 +26,7 @@ minus_op = -
 colon_assign = :=
 colon = :
 comma = ,
-comment = [\-\-][^\n]*
+comment = [\-\-|//][^\n]*
 
 %{
 %}
@@ -37,6 +38,15 @@ comment = [\-\-][^\n]*
 %%
 
 /*Lexical Rules*/
+
+{comment_multi_line} {
+    System.out.printf("comment_multi, %s\n", yytext());
+}
+
+{comment} {
+    System.out.printf("comment, %s\n", yytext());
+}
+
 {real} {
     System.out.printf("real, %s\n", yytext());
 }
@@ -84,9 +94,6 @@ comment = [\-\-][^\n]*
     System.out.printf("minus_op, %s\n", yytext());
 }
 
-{comment} {
-    System.out.printf("comment, %s\n", yytext());
-}
 
 {white_space} {System.out.println("White Space or New Line");}
 
