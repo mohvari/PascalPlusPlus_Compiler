@@ -1,3 +1,6 @@
+@echo off
+
 jflex .\scanner.jflex
-javac .\Scanner.javac
+
+javac .\Scanner.java
 

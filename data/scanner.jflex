@@ -11,21 +11,26 @@ import java.io.FileWriter;
 %char
 %column
 
-whiteSpace = [ \t\f\n]+
+white_space = [ |\t|\n]+
 real = [0-9]+\.[0-9]*
 number = [0-9]+
+string = \"[a-zA-Z]*\"
+character = \'[a-zA-z]\'
 id = [a-zA-Z][a-zA-Z|_|0-9]*
-keywords = array|boolean|begin|char|do|else|end|false|function|procedure|if|integer|of|real|return|string|true|while
+keyword = array|begin|do|else|end|false|function|procedure|if|of|return|true|while
+type = integer|real|string|char|boolean
 unary_op = \~
-binary_op = \+|\*|\/|&|\^|\||and|or|%
+binary_op = \+|\*|\/|&|\^|\||and|or|%|=|>=|>|<=|<|<>
 minus_op = -
+colon_assign = :=
+colon = :
+comma = ,
+comment = [\-\-][^\n]*
 
 %{
-    FileWriter fileWriter = new FileWriter("../data/scanner_output.txt");
 %}
 
 %eof{
-    fileWriter.close();
 %eof}
 
 
@@ -33,22 +38,57 @@ minus_op = -
 
 /*Lexical Rules*/
 {real} {
-    fileWriter.write("");
-
+    System.out.printf("real, %s\n", yytext());
 }
 
-{number} {}
+{number} {
+    System.out.printf("number, %s\n", yytext());
+}
 
-{keywords} {}
+{string} {
+    System.out.printf("string, %s\n", yytext());
+}
 
-{id} {fileWriter.write("id, %s\n", yytext());}
+{character} {
+    System.out.printf("character, %s\n", yytext());
+}
 
-{unary_op} {}
+{keyword} {
+    System.out.printf("keyword, %s\n", yytext());
+}
 
-{binary_op} {}
+{type} {
+    System.out.printf("type, %s\n", yytext());
+}
 
-{minus_op} {}
+{id} {
+    System.out.printf("id, %s\n", yytext());
+}
 
-{whiteSpace} {}
+{unary_op} {
+    System.out.printf("unary_op, %s\n", yytext());
+}
+
+{colon_assign} {System.out.printf("colon_assign, %s\n", yytext());}
+
+{colon} {System.out.printf(":, %s\n", yytext());}
+
+
+{comma} {System.out.printf("comma, %s\n", yytext());}
+
+{binary_op} {
+    System.out.printf("binary_op, %s\n", yytext());
+}
+
+{minus_op} {
+    System.out.printf("minus_op, %s\n", yytext());
+}
+
+{comment} {
+    System.out.printf("comment, %s\n", yytext());
+}
+
+{white_space} {System.out.println("White Space or New Line");}
+
 
 . {System.out.println("Other");}
