@@ -1,5 +1,6 @@
 /*User Code*/
 import java.util.*;
+import java.io.FileWriter;
 %%
 
 /*Options and declarations*/
@@ -11,24 +12,36 @@ import java.util.*;
 %column
 
 whiteSpace = [ \t\f\n]+
-positiveReal = [0-9]+\.[0-9]*
-postiveInteger = [0-9]+
+real = [0-9]+\.[0-9]*
+number = [0-9]+
 id = [a-zA-Z][a-zA-Z|_|0-9]*
 keywords = array|boolean|begin|char|do|else|end|false|function|procedure|if|integer|of|real|return|string|true|while
 unary_op = ~
 binary_op = \+|\*|\/|&|\^|\||and|or|%
 minus_op = -
 
+%{
+    FileWriter fileWriter = new FileWriter("../data/scanner_output.txt");
+%}
+
+%eof{
+    fileWriter.close();
+%eof}
+
+
 %%
 
 /*Lexical Rules*/
-{real} {System.out.println("float");}
+{real} {
+    fileWriter.write("");
 
-{int} { System.out.println("int");}
+}
 
-{keywords} {System.out.println("keyword!");}
+{int} {}
 
-{id} {System.out.println(yytext());}
+{keywords} {}
+
+{id} {fileWriter.write("id, %s\n", yytext());}
 
 {unary_op} {}
 
