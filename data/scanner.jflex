@@ -11,7 +11,7 @@ import java.util.*;
 %column
 
 comment_multi_line =  [\<][\-][\-][\S|\s]*[\-][\-][\>]
-white_space = [ |\t|\n]+
+white_space = [ |\t|\v|\r|\f|\n]+
 real = [0-9]+\.[0-9]*
 number = [0-9]+
 string = \"[a-zA-Z]*\"
@@ -40,11 +40,11 @@ comment = [[\-][\-]|[/][/]][^\n]*
 /*Lexical Rules*/
 
 {comment_multi_line} {
-    System.out.printf("comment_multi, %s\n", yytext());
+    /*System.out.printf("comment_multi, %s\n", yytext());*/
 }
 
 {comment} {
-    System.out.printf("comment, %s\n", yytext());
+    /*System.out.printf("comment, %s\n", yytext());*/
 }
 
 {real} {
@@ -99,7 +99,7 @@ comment = [[\-][\-]|[/][/]][^\n]*
 }
 
 
-{white_space} {System.out.println("White Space or New Line");}
+{white_space} {/*System.out.println("White Space or New Line");*/}
 
 
-. {System.out.println("Other");}
+. {/*System.out.println("Other");*/}

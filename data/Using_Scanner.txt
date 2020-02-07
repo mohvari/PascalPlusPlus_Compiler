@@ -1,0 +1,4 @@
+For using Jflex:
+    jflex .\scanner.jflex
+    javac .\JflexScanner.java
+    java JflexScanner input.txt | out-file middleFile.ppps -encoding utf8
