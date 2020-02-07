@@ -1,17 +1,16 @@
 /*User Code*/
 import java.util.*;
-import java.io.FileWriter;
 %%
 
 /*Options and declarations*/
 
-%class Scanner
+%class JflexScanner
 %standalone
 %line
 %char
 %column
 
-comment_multi_line = [<\-\-][\S\s]*[\-\->]
+comment_multi_line =  [\<][\-][\-][\S|\s]*[\-][\-][\>]
 white_space = [ |\t|\n]+
 real = [0-9]+\.[0-9]*
 number = [0-9]+
@@ -23,11 +22,11 @@ keyword = array|begin|do|else|end|function|procedure|if|of|return|while
 type = integer|real|string|char|boolean
 unary_op = \~
 binary_op = \+|\*|\/|&|\^|\||and|or|%|=|>=|>|<=|<|<>
-minus_op = -
+minus_op = \-
 colon_assign = :=
 colon = :
 comma = ,
-comment = [\-\-|//][^\n]*
+comment = [[\-][\-]|[/][/]][^\n]*
 
 %{
 %}
