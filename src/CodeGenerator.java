@@ -9,6 +9,7 @@ public class CodeGenerator {
     Stack<String> semanticStack = new Stack<>();
     HashMap<String, String> typeMap = new HashMap<>();
     HashMap<String, String> functionSignaturesMap = new HashMap<>();
+    HashMap<String, String> builtInFunctions = new HashMap<>();
 
 
     // Define any variables needed for code generation
@@ -21,6 +22,8 @@ public class CodeGenerator {
         typeMap.put("real", "double");
         typeMap.put("string", "i8*");
 
+        builtInFunctions.put("write", "@printf");
+        functionSignaturesMap.put("write", "i32 (i8*, ...)");
     }
 
     public void generate(String semantic) {
@@ -72,8 +75,12 @@ public class CodeGenerator {
                 Collections.reverse(arguments);
 
                 String functionName = semanticStack.pop();
-                llvmCommand = String.format("%%func_out_%d = call %s %s)", lastFunctionNumber,
-                        functionSignaturesMap.get(functionName), arguments.stream().reduce((a, b) -> a + "," + b).get());
+                if (builtInFunctions.get(functionName) != null) {
+                    functionName = builtInFunctions.get(functionName);
+                }
+
+                llvmCommand = String.format("%%func_out_%d = call %s %s(%s)", lastFunctionNumber,
+                        functionSignaturesMap.get(functionName), functionName, arguments.stream().reduce((a, b) -> a + "," + b).orElse(""));
                 codes.add(llvmCommand);
                 semanticStack.push(String.format("func_out_%d", lastFunctionNumber++));
                 break;
