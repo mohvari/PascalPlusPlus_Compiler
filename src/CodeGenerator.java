@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class CodeGenerator {
@@ -10,12 +11,14 @@ public class CodeGenerator {
     HashMap<String, String> typeMap = new HashMap<>();
     HashMap<String, String> functionSignaturesMap = new HashMap<>();
     HashMap<String, String> builtInFunctions = new HashMap<>();
+    ArrayList<String> builtInFunctionsDeclarations = new ArrayList<>();
 
 
     // Define any variables needed for code generation
     public CodeGenerator(LexicalAnalyzer scanner) {
         this.scanner = scanner;
         // initialize type mapping
+        typeMap.put("number", "i32");
         typeMap.put("integer", "i32");
         typeMap.put("char", "i8");
         typeMap.put("boolean", "i1");
@@ -23,7 +26,8 @@ public class CodeGenerator {
         typeMap.put("string", "i8*");
 
         builtInFunctions.put("write", "@printf");
-        functionSignaturesMap.put("write", "i32 (i8*, ...)");
+        functionSignaturesMap.put("@printf", "i32 (i8*, ...)*");
+        builtInFunctionsDeclarations.add("declare i32 @printf(i8*, ...)");
     }
 
     public void generate(String semantic) {
@@ -31,17 +35,18 @@ public class CodeGenerator {
         String name;
         String content;
         int value;
+        int len;
         String type;
         String llvmCommand;
         switch (semantic.substring(1)) {
             case "create_const_string":
-                int len = 10;
                 name = String.format("@.str-%d", lastVariableNumber++);
-                content = Utils.addEndToString("");
-                llvmCommand = String.format("%s =  private [%d x i8] c%s", name, len, content);
+                content = Utils.addEndToString(LexicalAnalyzer.STP);
+                len = content.length() - 2 - 2;
+                llvmCommand = String.format("%s =  private constant [%d x i8] c%s", name, len, content);
                 globalStringsDeclerations.add(llvmCommand);
                 defineLocalVariable("." + name.substring(1), String.format("[%d x i8]* %s", len, name));
-                semanticStack.push("i8* %%." + name.substring(1));
+                semanticStack.push("i8* %." + name.substring(1));
                 break;
             case "create_const_number":
                 break;
@@ -117,6 +122,10 @@ public class CodeGenerator {
         // Can be used to print the generated code to output
         // I used this because in the process of compiling, I stored the generated code in a structure
         // If you want, you can output a code line just when it is generated (strongly NOT recommended!!)
+        for (String funcDeclaration : builtInFunctionsDeclarations) {
+            System.out.println(funcDeclaration);
+        }
+
         for (String declaration : globalStringsDeclerations) {
             System.out.println(declaration);
         }
