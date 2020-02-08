@@ -30,12 +30,12 @@ public class CodeGenerator {
         int value;
         String type;
         String llvmCommand;
-        switch (semantic) {
+        switch (semantic.substring(1)) {
             case "create_const_string":
                 int len = 10;
                 name = String.format("@.str-%d", lastVariableNumber++);
                 content = Utils.addEndToString("");
-                llvmCommand = String.format("%s =  private [%d x i8] c\"%s\"", name, len, content);
+                llvmCommand = String.format("%s =  private [%d x i8] c%s", name, len, content);
                 globalStringsDeclerations.add(llvmCommand);
                 defineLocalVariable("." + name.substring(1), String.format("[%d x i8]* %s", len, name));
                 semanticStack.push("i8* %%." + name.substring(1));
@@ -72,13 +72,18 @@ public class CodeGenerator {
                 Collections.reverse(arguments);
 
                 String functionName = semanticStack.pop();
-                llvmCommand = String.format("%%func_out_%d = call %s (%s)", lastFunctionNumber,
-                        functionSignaturesMap.get(functionName), arguments.stream().reduce((a, b) -> a + "," + b));
+                llvmCommand = String.format("%%func_out_%d = call %s %s)", lastFunctionNumber,
+                        functionSignaturesMap.get(functionName), arguments.stream().reduce((a, b) -> a + "," + b).get());
                 codes.add(llvmCommand);
                 semanticStack.push(String.format("func_out_%d", lastFunctionNumber++));
                 break;
             case "return_const":
                 codes.add(String.format("ret %s %s", typeMap.get(LexicalAnalyzer.TOKEN), LexicalAnalyzer.STP));
+                break;
+
+
+
+            default:
                 break;
 
         }
@@ -88,7 +93,7 @@ public class CodeGenerator {
     private void defineFunction(String name, String type) {
         String llvmCommand = String.format("define %s %s()", type, name);
         codes.add(llvmCommand);
-        functionSignaturesMap.put(name, String.format("%s ()*", type));
+        functionSignaturesMap.put(name, String.format("%s", type));
     }
 
     private void defineLocalVariable(String name, String addressBaseVar) {
@@ -105,6 +110,9 @@ public class CodeGenerator {
         // Can be used to print the generated code to output
         // I used this because in the process of compiling, I stored the generated code in a structure
         // If you want, you can output a code line just when it is generated (strongly NOT recommended!!)
+        for (String declaration : globalStringsDeclerations) {
+            System.out.println(declaration);
+        }
         for (String code : codes) {
             System.out.println(code);
         }
