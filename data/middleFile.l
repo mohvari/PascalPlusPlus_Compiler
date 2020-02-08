@@ -6,12 +6,11 @@ id, b
 type, real
 colon_assign, :=
 real, 2.5
-id, a
-colon_assign, :=
-number, 3
 id, c
 :, :
 type, boolean
 id, d
-binary_op, =
-id, a
+:, :
+type, integer
+colon_assign, :=
+number, 6

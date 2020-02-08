@@ -1,10 +1,10 @@
 a : integer // this is the first comment!
 b : real := 2.5 -- mohammad!
-a := 3
+//a := 3
 <-- It is multi
         line
         comment -->
 c : boolean
 
-d = a - b;
+d : integer := 6;
 

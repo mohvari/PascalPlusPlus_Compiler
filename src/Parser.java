@@ -2,7 +2,7 @@ import java.util.Stack;
 
 public class Parser 
 {
-	Scanner scanner;
+	LexicalAnalyzer scanner;
 	CodeGenerator cg;
 	PTBlock[][] parseTable;
 	Stack<Integer> parseStack = new Stack<Integer>();
@@ -15,7 +15,7 @@ public class Parser
 			this.parseTable = parseTable;
 			this.symbols = symbols;
 	
-			scanner = new Scanner(inputFile);
+			scanner = new LexicalAnalyzer(inputFile);
 			cg = new CodeGenerator(scanner);
 		}
 		catch (Exception e)

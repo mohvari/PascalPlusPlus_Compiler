@@ -1,11 +1,11 @@
 
 public class CodeGenerator 
 {
-    Scanner scanner; // This was my way of informing CG about Constant Values detected by Scanner, you can do whatever you like
+    LexicalAnalyzer scanner; // This was my way of informing CG about Constant Values detected by Scanner, you can do whatever you like
     
     // Define any variables needed for code generation
     
-    public CodeGenerator(Scanner scanner)
+    public CodeGenerator(LexicalAnalyzer scanner)
     {
         this.scanner = scanner;
     }
