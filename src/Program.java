@@ -3,23 +3,23 @@ public class Program
 	// Address of PGen output table.
 	public static final String stPath = "table.npt";
 	
-	public static String inputPath = "";
-	public static String outputPath = "";
+	public static String inputPath = "..\\data\\middleFile.l";
+	public static String outputPath = "..\\data\\output.lm";
 	public static void main(String[] args)
 	{
 
-        if ( args.length != 2)
-        {
-            System.err.println("Wrong parameters passed.");
-            System.err.println("Use the following format:");
-            System.err.println("java Program inputfilename.L outputfilename.Lm");
-           return;
-        }
-        else
-        {
-	        inputPath = args[0];
-	        outputPath = args[1];
-        }
+//        if ( args.length != 2)
+//        {
+//            System.err.println("Wrong parameters passed.");
+//            System.err.println("Use the following format:");
+//            System.err.println("java Program inputfilename.L outputfilename.Lm");
+//           return;
+//        }
+//        else
+//        {
+//	        inputPath = args[0];
+//	        outputPath = args[1];
+//        }
 
 	String[] symbols = null;
 	PTBlock[][] parseTable = null;

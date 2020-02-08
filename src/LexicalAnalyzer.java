@@ -32,19 +32,19 @@ public class LexicalAnalyzer
 
 	public String findTokenStp(String line)
 	{
-		System.out.printf("this is the line\t%s\n", line);
+//		System.out.printf("this is the line\t%s\n", line);
 		String[] tokenWithDescription = line.split(",");
 		if (tokenWithDescription[0].equals("keyword") | tokenWithDescription[0].equals("parenthesis"))
 		{
-			System.out.printf("This is the token%s\n", tokenWithDescription[1]);
 			this.TOKEN = tokenWithDescription[1];
 			this.STP = tokenWithDescription[1];
+			System.out.printf("Token:%s\tSTP:%s\n", this.TOKEN, this.STP);
 			return this.TOKEN;
 		}
-		System.out.printf("This is the token%s\n", tokenWithDescription[0]);
 		this.TOKEN = tokenWithDescription[0];
 		this.STP = tokenWithDescription[1];
-		return tokenWithDescription[0];
+		System.out.printf("Token:%s\tSTP:%s\n", this.TOKEN, this.STP);
+		return this.TOKEN;
 	}
 
 	public String nextToken() throws Exception
@@ -55,10 +55,10 @@ public class LexicalAnalyzer
 			{
 				this.firstCall = false;
 				String line = this.fileReader.nextLine().substring(3);
-				this.findTokenStp(line);
+				return this.findTokenStp(line);
 			}
 			String line = this.fileReader.nextLine();
-			this.findTokenStp(line);
+			return this.findTokenStp(line);
 
 		}
 		fileReader.close();
