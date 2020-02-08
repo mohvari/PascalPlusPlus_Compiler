@@ -38,12 +38,12 @@ public class LexicalAnalyzer
 		{
 			this.TOKEN = tokenWithDescription[1];
 			this.STP = tokenWithDescription[1];
-			System.out.printf("Token:%s\tSTP:%s\n", this.TOKEN, this.STP);
+//			System.out.printf("Token:%s\tSTP:%s\n", this.TOKEN, this.STP);
 			return this.TOKEN;
 		}
 		this.TOKEN = tokenWithDescription[0];
 		this.STP = tokenWithDescription[1];
-		System.out.printf("Token:%s\tSTP:%s\n", this.TOKEN, this.STP);
+//		System.out.printf("Token:%s\tSTP:%s\n", this.TOKEN, this.STP);
 		return this.TOKEN;
 	}
 
@@ -53,8 +53,8 @@ public class LexicalAnalyzer
 		{
 			if(this.firstCall)
 			{
-				this.firstCall = false;
-				String line = this.fileReader.nextLine().substring(3);
+				this.firstCall = false;//TODO
+				String line = this.fileReader.nextLine().substring(1);
 				return this.findTokenStp(line);
 			}
 			String line = this.fileReader.nextLine();
