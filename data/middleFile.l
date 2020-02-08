@@ -1,16 +1,16 @@
-﻿id, a
-:, :
-type, integer
-id, b
-:, :
-type, real
-colon_assign, :=
-real, 2.5
-id, c
-:, :
-type, boolean
-id, d
-:, :
-type, integer
-colon_assign, :=
-number, 6
+﻿keyword,function
+id,main
+parenthesis,(
+parenthesis,)
+:,:
+type,integer
+keyword,begin
+id,write
+parenthesis,(
+string,"hello world !"
+parenthesis,)
+;,;
+keyword,return
+number,0
+;,;
+keyword,end

@@ -39,13 +39,24 @@ public class LexicalAnalyzer
 				String line = this.fileReader.nextLine().substring(3);
 				System.out.printf("this is the line:\t%s\n", line);
 				String[] tokenWithDescription = line.split(",");
-				System.out.printf("This is the token\t%s\n",tokenWithDescription[0]);
+				if (tokenWithDescription[0].equals("keyword") | tokenWithDescription[0].equals("parenthesis"))
+				{
+					System.out.printf("This is the token%s\n", tokenWithDescription[1]);
+					return tokenWithDescription[1];
+				}
+				System.out.printf("This is the token%s\n",tokenWithDescription[0]);
 				return tokenWithDescription[0];
 			}
+
 			String line = this.fileReader.nextLine();
 			System.out.printf("this is the line:\t%s\n", line);
 			String[] tokenWithDescription = line.split(",");
-			System.out.printf("This is the token\t%s\n", tokenWithDescription[0]);
+			if (tokenWithDescription[0].equals("keyword") | tokenWithDescription[0].equals("parenthesis"))
+			{
+				System.out.printf("This is the token%s\n", tokenWithDescription[1]);
+				return tokenWithDescription[1];
+			}
+			System.out.printf("This is the token%s\n", tokenWithDescription[0]);
 
 			return tokenWithDescription[0];
 		}
