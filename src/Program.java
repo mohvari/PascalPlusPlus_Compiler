@@ -3,8 +3,8 @@ public class Program
 	// Address of PGen output table.
 	public static final String stPath = "table.npt";
 	
-	public static String inputPath = "..//data//middleFile.l";
-	public static String outputPath = "..//data//output.lm";
+	public static String inputPath = "..\\data\\middleFile_s2.l";
+	public static String outputPath = "..\\data\\output.lm";
 	public static void main(String[] args)
 	{
 

@@ -24,9 +24,10 @@ begin
 
     while index < 10 do 
     begin
-        arr[index] := index;
-        arr[index] := product(index, arr[index]) ;
-        print(arr[index]) ;
+        --arr[index] := index;
+        --arr[index] := product(index, arr[index]) ;
+        --print(arr[index]) ;
+        write("Hello!")
         index := index + 1;
     end; 
 

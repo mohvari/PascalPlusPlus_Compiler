@@ -53,7 +53,7 @@ public class LexicalAnalyzer
 		{
 			if(this.firstCall)
 			{
-				this.firstCall = false;//TODO
+				this.firstCall = false;
 				String line = this.fileReader.nextLine().substring(1);
 				return this.findTokenStp(line);
 			}

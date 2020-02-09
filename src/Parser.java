@@ -102,9 +102,8 @@ public class Parser
 		{
 			e.printStackTrace();
 		}
-		
+
 		int i;
-		
 		for (i = 0; i < symbols.length; i++)
 			if (symbols[i].equals(t))
 				return i;
